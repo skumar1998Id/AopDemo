@@ -48,21 +48,7 @@ public class PaymentService {
 
 AOP can be applied to both methods.
 
-4.  Pointcut
-A Pointcut defines WHERE (which methods/classes) an Aspect should be applied.
-It is an expression used inside an Advice annotation.
-✅ Example: Apply to All Methods in PaymentService
-
-@Pointcut("execution(* com.example.service.PaymentService.*(..))")
-public void paymentServiceMethods() { }
-This Pointcut matches all methods inside PaymentService.
-
-@Before("paymentServiceMethods()")
-public void logBefore() {
-    System.out.println("Logging before payment method...");
-}
-
-5.  Target Object
+4.  Target Object
 The Target Object is the actual class on which AOP is applied.
 Spring AOP uses proxy objects to apply aspects to target objects.
 ✅ Example:
