@@ -16,13 +16,13 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/employees")
-    public ResponseEntity<?>fetchAllEmployees() {
-        return new ResponseEntity<List<Student>>(studentService.getAllEmployees(), HttpStatus.OK);
+    @GetMapping("/students")
+    public ResponseEntity<?> fetchAllStudents() {
+        return new ResponseEntity<List<Student>>(studentService.getAllStudents(), HttpStatus.OK);
     }
 
-    @PostMapping("/employees")
-    public ResponseEntity<?>fetchAllEmployees( @RequestBody Student student) {
-        return new ResponseEntity<Student>(studentService.addEmployee(student), HttpStatus.OK);
+    @PostMapping("/students")
+    public ResponseEntity<?> addStudent(@RequestBody Student student) {
+        return new ResponseEntity<Student>(studentService.addStudent(student), HttpStatus.OK);
     }
 }

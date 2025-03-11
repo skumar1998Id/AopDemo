@@ -14,12 +14,12 @@ public class StudentService {
     @Autowired
     private StudentRepo studentRepo;
 
-    public List<Student> getAllEmployees(){
+    public List<Student> getAllStudents(){
       return studentRepo.findAll();
     };
 
 
-    public Student addEmployee(Student student) {
+    public Student addStudent(Student student) {
         return studentRepo.save(student);
     }
 }
