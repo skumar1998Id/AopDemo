@@ -2,6 +2,7 @@ package com.example.aopdemo.aop;
 
 import com.example.aopdemo.entity.Student;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -83,4 +84,25 @@ public class StudentAspect {
 
     }
 
+    /**
+     * This advice wraps the execution of `addStudent()` in `StudentService`.
+     * It logs method start, execution time, and handles exceptions.
+     */
+    @Around("execution(* com.example.aopdemo.service.StudentService.addStudent(..))")
+    public Object aroundAdvice(ProceedingJoinPoint joinPoint) {
+        Object result = null;
+        long startTime = System.currentTimeMillis();
+        try {
+            System.out.println("🚀 Starting method: " + joinPoint.getSignature().getName());
+            result = joinPoint.proceed();
+            long executionTime = System.currentTimeMillis() - startTime;
+            System.out.println("✅ Method " + joinPoint.getSignature().getName() + " executed successfully in " + executionTime + "ms.");
+        } catch (Throwable exception) {
+            System.out.println("❌ Exception in method: " + joinPoint.getSignature().getName());
+            System.out.println("🔴 Error Message: " + exception.getMessage());
+        }
+
+        return result;
+    }
 }
+
